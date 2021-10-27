@@ -1,24 +1,29 @@
 
 package com.ceep.tiendaProductos.dominio;
 
-import java.util.Date;
+
 
 
 public class Producto {
     private String nombre;
-    private int canitdad;
+    private int cantidad;
     private double precio;
-    private Date fechaCad;
+    private String fechaCad;
 
     public Producto() {
     }
 
-    public Producto(String nombre, int canitdad, double precio, Date fechaCad) {
+    public Producto(String nombre, int cantidad, double precio, String fechaCad) {
+        this();
         this.nombre = nombre;
-        this.canitdad = canitdad;
+        this.cantidad = cantidad;
         this.precio = precio;
         this.fechaCad = fechaCad;
     }
+    public Producto(String nombre) {
+        this.nombre = nombre;
+    }
+    
 
     public String getNombre() {
         return nombre;
@@ -28,12 +33,12 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getCanitdad() {
-        return canitdad;
+    public int getCantidad() {
+        return cantidad;
     }
 
-    public void setCanitdad(int canitdad) {
-        this.canitdad = canitdad;
+    public void setCanitdad(int cantidad) {
+        this.cantidad = cantidad;
     }
 
     public double getPrecio() {
@@ -44,17 +49,17 @@ public class Producto {
         this.precio = precio;
     }
 
-    public Date getFechaCad() {
+    public String getFechaCad() {
         return fechaCad;
     }
 
-    public void setFechaCad(Date fechaCad) {
+    public void setFechaCad(String fechaCad) {
         this.fechaCad = fechaCad;
     }
 
     @Override
     public String toString() {
-        return "Producto: "+ nombre + ", canitdad=" + canitdad + ", precio=" + precio + ", fechaCad=" + fechaCad + '}';
+        return "Producto: "+ nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", fechaCad=" + fechaCad + '}';
     }
     
     
