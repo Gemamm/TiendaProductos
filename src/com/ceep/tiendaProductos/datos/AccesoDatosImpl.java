@@ -22,8 +22,8 @@ public class AccesoDatosImpl implements IAccesoDatos{
 
     @Override
     public boolean existe(String nombreArchivo) {
-        var archivo = new File (nombreArchivo);
-        return true;
+        File archivo = new File (nombreArchivo);
+        return archivo.exists();
     }
 
    @Override
@@ -31,19 +31,20 @@ public class AccesoDatosImpl implements IAccesoDatos{
         //Archivo
         File archivo = new File(nombreArchivo);
         //Creo un arraylist con los productos
-        List<Producto> productos = new ArrayList<>(); //almacena productos
         String[] producto = new String[4];
+        List<Producto> productos = new ArrayList<>(); //almacena productos
+        
 
         try {
             //Declaro variable para entrar al archivo
             BufferedReader entrada = new BufferedReader(new FileReader(archivo)); //Para que no se sobreescriba
-            String lectura = entrada.readLine(); // lectura = nombre;cantidad;precio;fecha
+            String lectura = null; // lectura = nombre;cantidad;precio;fecha
 
             //Hasta que se acaben las lineas con productos
-            while (lectura != null) {
+            while ((lectura = entrada.readLine())!= null) {
                 producto = lectura.split(";"); // producto = {nombre, cantidad, precio, fecha}
                 
-                 var nombre= producto[0];
+                var nombre= producto[0];
                 var precio= Double.parseDouble(producto[1]);
                 var cantidad= Integer.parseInt(producto[2]);
                 var fecha= producto[3];
@@ -94,7 +95,7 @@ public class AccesoDatosImpl implements IAccesoDatos{
                 cont++;
             }
             if (lectura == null) {
-                mensaje = "El producto" + buscar + "no esta"
+                mensaje = "El producto " + buscar + " no esta "
                         + "en el catalogo";
             }
             entrada.close();
@@ -110,11 +111,11 @@ public class AccesoDatosImpl implements IAccesoDatos{
 
     @Override
     public void crear(String nombreArchivo) throws AccesoDatosEx {
-        var archivo = new File (nombreArchivo);
+        File archivo = new File (nombreArchivo);
         try {
-            var escribir = new PrintWriter (new PrintWriter(nombreArchivo));
+            PrintWriter escribir = new PrintWriter (new FileWriter(nombreArchivo));
             escribir.close();
-        } catch (Exception e) {
+        } catch (IOException e) { // IO es entrada y salida.
             e.printStackTrace(System.out);
             throw new AccesoDatosEx("Error al crear el archivo");
         }

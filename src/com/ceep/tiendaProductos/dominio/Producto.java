@@ -12,7 +12,9 @@ public class Producto {
 
     public Producto() {
     }
-
+    /*public Producto() {
+    this.idproducto= Producto.contadorProd++;
+    }*/
     public Producto(String nombre, int cantidad, double precio, String fechaCad) {
         this();
         this.nombre = nombre;
@@ -59,7 +61,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "Producto: "+ nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", fechaCad=" + fechaCad + '}';
+        return "Producto: "+ nombre + "\ncantidad=" + cantidad + "\nprecio=" + precio + "\nfechaCad=" + fechaCad + '}';
     }
     
     

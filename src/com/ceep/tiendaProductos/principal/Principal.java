@@ -22,6 +22,8 @@ public class Principal {
                     + "2.- Agregar producto. \n"
                     + "3.- Listar productos. \n"
                     + "4.- Buscar producto. \n"
+                    + "5.- Total precio productos. \n"
+                    + "6.- Mayor precio. \n"
                     + "0.- Salir\n");
             option = Integer.parseInt(lectura.nextLine());
 
@@ -47,10 +49,19 @@ public class Principal {
                     catalogo.listarProducto(nombreArchivo);
 
                     break;
+                    
                 case 4:
                     System.out.print("Introduce el producto a buscar:\t");
                     nombre = lectura.nextLine();
                     catalogo.buscarProducto(nombreArchivo, nombre);
+                    break;
+                case 5:
+                    catalogo.listarProducto(nombreArchivo);
+
+                    break;
+                case 6:
+                    catalogo.listarProducto(nombreArchivo);
+
                     break;
                 case 0:
                     System.out.println("Gracias!, hasta la proxima");
