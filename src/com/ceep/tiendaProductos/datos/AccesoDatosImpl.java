@@ -61,10 +61,10 @@ public class AccesoDatosImpl implements IAccesoDatos{
     
     @Override
     public void escribir(Producto producto, String nombreArchivo, boolean anexar) throws EscrituraDatosEx {
-        var archivo = new File (nombreArchivo);
+        File archivo = new File (nombreArchivo);
         try {
             
-            var escribir = new PrintWriter (new FileWriter(archivo));
+            PrintWriter escribir = new PrintWriter (new FileWriter(archivo, true));
             escribir.println(producto.getNombre()+";"
                     +producto.getCantidad()+";"
                     +producto.getPrecio()+";"
@@ -79,13 +79,13 @@ public class AccesoDatosImpl implements IAccesoDatos{
 
     @Override
     public String buscar(String nombreArchivo, String buscar) throws LecturaDatosEx {
-        var archivo = new File(nombreArchivo);
+        File archivo = new File(nombreArchivo);
         String mensaje = "";
         try {
-            var entrada = new BufferedReader(new FileReader(archivo));
-            var lectura = entrada.readLine();
+            BufferedReader entrada = new BufferedReader(new FileReader(archivo));
+            String lectura = null;
             int cont = 1;
-            while (lectura != null) {
+            while ((lectura = entrada.readLine()) != null) {
                 if (!lectura.equalsIgnoreCase(buscar)) {
                     mensaje = "\nEl producto: " + buscar + ", está en la línea " + cont;
                     break;
